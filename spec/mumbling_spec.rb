@@ -3,18 +3,17 @@ require_relative '../lib/mumbling.rb'
 
 describe Mumbling do
   describe '#accum' do
-    let(:string) { "a" }
-    it 'returns letter as upcase' do
+    it "returns a letter" do
       result = Mumbling.new
-      expect(result.accum(string)).to eq "A"
+      expect(result.accum("a")).to eq "A"
+    end
+    it 'returns letter number of times based on index position' do
+      result = Mumbling.new
+      expect(result.accum("ab")).to eq "A-Bb"
+    end
+    it 'returns letter number of times based on index position up to 10 indexes' do
+      result = Mumbling.new
+      expect(result.accum("abcdefghij")).to eq "A-Bb-Ccc-Dddd-Eeeee-Ffffff-Ggggggg-Hhhhhhhh-Iiiiiiiii-Jjjjjjjjjj"
     end
   end
 end
-
-# takes a string
-# splits it into each letter
-# capitialize the letter
-# then every iteration, add one extre lower case letter that matches, adding one more each time
-# "abcde" = "A-Bc-Ccc-Dddd-Eeeee"
-# join together with the dashes
-# letter can be lower case or upper case - treated the same - returned as upper case
